@@ -1,0 +1,75 @@
+<?php
+require 'vendor/autoload.php'; // Include any required libraries
+
+use GuzzleHttp\Client;
+
+// Configuration
+$account_id = 'YOUR_ACCOUNT_ID';
+$client_id = 'YOUR_CLIENT_ID';
+$client_secret = 'YOUR_CLIENT_SECRET';
+$excel_file = 'path/to/excel/file.xlsx';
+
+// Authenticate and get access token
+$auth_url = 'https://oauth.brightcove.com/v4/access_token';
+$client = new Client();
+$response = $client->request('POST', $auth_url, [
+    'headers' => [
+        'Content-Type' => 'application/x-www-form-urlencoded'
+    ],
+    'form_params' => [
+        'grant_type' => 'client_credentials',
+        'client_id' => $client_id,
+        'client_secret' => $client_secret
+    ]
+]);
+$data = json_decode($response->getBody(), true);
+$access_token = $data['access_token'];
+
+// Read video metadata from Excel sheet
+$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excel_file);
+$worksheet = $spreadsheet->getActiveSheet();
+$data = $worksheet->toArray();
+
+// Bulk upload videos
+$create_video_url = 'https://api.brightcove.com/v1/accounts/' . $account_id . '/videos';
+$headers = array(
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $access_token
+);
+
+foreach ($data as $row) {
+    $video_url = $row[0]; // Assuming video URL is in the first column
+    $title = $row[1]; // Assuming title is in the second column
+    $description = $row[2]; // Assuming description is in the third column
+    $ingest_profile = $row[3]; // Assuming ingest profile is in the fourth column
+    $tags = explode(',', $row[4]); // Assuming tags are in the fifth column as comma-separated values
+    $thumbnails = explode(',', $row[5]); // Assuming thumbnails are in the sixth column as comma-separated values
+
+    // Create video request payload
+    $payload = array(
+        'name' => $title,
+        'description' => $description,
+        'tags' => $tags,
+        'custom_fields' => array(
+            'thumbnails' => $thumbnails
+        ),
+        'ingest' => array(
+            'ingest-profile' => $ingest_profile
+        ),
+        'master' => array(
+            'url' => $video_url
+        )
+    );
+    $json_payload = json_encode($payload);
+
+    // Make the Create Video API request
+    $client->request('POST', $create_video_url, [
+        'headers' => $headers,
+        'body' => $json_payload
+    ]);
+
+    echo 'Video created successfully: ' . $title . PHP_EOL;
+}
+
+echo 'Bulk upload complete!';
+?>
