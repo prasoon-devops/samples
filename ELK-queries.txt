@@ -1,0 +1,64 @@
+######### 3 Failed login attempts from any user ###############
+
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "log_message": "Failed password"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-5m"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "users": {
+      "terms": {
+        "field": "user.keyword",
+        "min_doc_count": 3
+      }
+    }
+  }
+}
+
+################################ More than 10 4xx aggregated by ip ##########################
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-1d"
+            }
+          }
+        },
+        {
+          "term": {
+            "response_code": {
+              "value": 4xx
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "ips": {
+      "terms": {
+        "field": "ip.keyword",
+        "min_doc_count": 10,
+        "size": 10000
+      }
+    }
+  }
+}

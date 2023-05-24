@@ -1,0 +1,49 @@
+<?php
+require 'vendor/autoload.php'; // Include any required libraries
+
+use GuzzleHttp\Client;
+
+// Configuration
+$account_id = 'YOUR_ACCOUNT_ID';
+$client_id = 'YOUR_CLIENT_ID';
+$client_secret = 'YOUR_CLIENT_SECRET';
+
+// Authenticate and get access token
+$auth_url = 'https://oauth.brightcove.com/v4/access_token';
+$client = new Client();
+$response = $client->request('POST', $auth_url, [
+    'headers' => [
+        'Content-Type' => 'application/x-www-form-urlencoded'
+    ],
+    'form_params' => [
+        'grant_type' => 'client_credentials',
+        'client_id' => $client_id,
+        'client_secret' => $client_secret
+    ]
+]);
+$data = json_decode($response->getBody(), true);
+$access_token = $data['access_token'];
+
+// Create a folder
+$create_folder_url = 'https://cms.api.brightcove.com/v1/accounts/' . $account_id . '/folders';
+$headers = array(
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $access_token
+);
+
+$folder_data = array(
+    'name' => 'My Folder',
+    'parent_folder_id' => 'PARENT_FOLDER_ID' // Optional - Specify the parent folder ID if creating a subfolder
+);
+
+$response = $client->request('POST', $create_folder_url, [
+    'headers' => $headers,
+    'json' => $folder_data
+]);
+
+// Get the created folder ID
+$data = json_decode($response->getBody(), true);
+$folder_id = $data['id'];
+
+echo 'Folder created with ID: ' . $folder_id;
+?>
