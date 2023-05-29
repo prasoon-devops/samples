@@ -1,0 +1,12 @@
+{{#context.alerts}}
+  {{#if @first}}
+    Value of Context Field: {{../contextField}}
+  {{/if}}
+  Alert Message: {{message}}
+  Severity: {{severity}}
+  Timestamp: {{timestamp}}
+  Details:
+  {{#details}}
+    - {{.}}
+  {{/details}}
+{{/context.alerts}}
