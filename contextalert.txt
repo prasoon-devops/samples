@@ -1,3 +1,6 @@
+"text": "4xx errors were detected from the following source IP addresses:\n\n{{#ctx.payload.aggregations.source_ip.buckets}}{{key}}: {{doc_count}} errors\n{{/ctx.payload.aggregations.source_ip.buckets}}"
+     
+
 {{#context.alerts}}
   {{#if @first}}
     Value of Context Field: {{../contextField}}
