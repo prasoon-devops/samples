@@ -62,3 +62,53 @@
     }
   }
 }
+-----------------------------------------------------------------------------------------------------
+########## 4xx by ip address more than 10 filtered by log group #####################
+
+POST <INDEX_NAME>/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-15m",
+              "lt": "now"
+            }
+          }
+        },
+        {
+          "range": {
+            "http_status_code": {
+              "gte": 400,
+              "lt": 500
+            }
+          }
+        },
+        {
+          "term": {
+            "log_group.keyword": "<LOG_GROUP_NAME>"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "ip_addresses": {
+      "terms": {
+        "field": "client_ip.keyword",
+        "size": 10,
+        "min_doc_count": 11
+      },
+      "aggs": {
+        "all_logs": {
+          "top_hits": {
+            "size": 10000
+          }
+        }
+      }
+    }
+  }
+}
