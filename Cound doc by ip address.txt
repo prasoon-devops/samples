@@ -1,26 +1,10 @@
+GET /<index_name>/_search
 {
-  "size": 0,
   "query": {
     "range": {
-      "http_status_code": {
+      "http.response.status_code": {
         "gte": 400,
         "lt": 500
-      }
-    }
-  },
-  "aggs": {
-    "ip_addresses": {
-      "terms": {
-        "field": "client_ip.keyword",
-        "size": 10,
-        "min_doc_count": 11
-      },
-      "aggs": {
-        "all_logs": {
-          "top_hits": {
-            "size": 10000
-          }
-        }
       }
     }
   }
