@@ -1,0 +1,21 @@
+The Dev Tools in Elasticsearch and Kibana provide a powerful set of features for interacting with and managing your Elasticsearch cluster. Here are some of the things you can do from Dev Tools:
+
+1. Execute Queries: You can write and execute various types of queries against your Elasticsearch cluster, including CRUD operations, search queries, aggregations, and more. The Dev Tools provide a convenient interface for composing and testing your queries.
+
+2. Index Documents: You can use the Dev Tools to index new documents into Elasticsearch. This is useful for adding new data or performing bulk indexing operations.
+
+3. Update and Delete Documents: You can update or delete existing documents in Elasticsearch using the Dev Tools. This allows you to modify or remove specific data records.
+
+4. Mapping Operations: Dev Tools enables you to manage the mappings of your Elasticsearch indices. You can create, update, or delete index mappings to define the structure and data types of your documents.
+
+5. Execute Scripts: With Dev Tools, you can execute scripts using various scripting languages supported by Elasticsearch, such as Painless, Groovy, or JavaScript. This allows you to perform custom calculations or transformations on your data.
+
+6. Analyze Text: Dev Tools includes an Analyze API that allows you to analyze text using different analyzers and tokenizers defined in your Elasticsearch configuration. This helps you understand how your data is processed during indexing and querying.
+
+7. Manage Index Lifecycle: You can perform index lifecycle management tasks, such as creating or deleting index lifecycle policies, executing lifecycle operations, and managing rollover operations for time-based indices.
+
+8. Cluster and Node Monitoring: Dev Tools provides APIs to retrieve information about your Elasticsearch cluster and individual nodes. You can monitor cluster health, node status, shard allocation, and more.
+
+9. Security Operations: If you have the appropriate permissions, you can use Dev Tools to manage security-related operations, such as creating or deleting users, assigning roles, configuring authentication and authorization settings, and handling access control.
+
+These are just some of the capabilities available through the Dev Tools in ELK. It provides a flexible and interactive environment for managing, querying, and exploring your Elasticsearch data.
