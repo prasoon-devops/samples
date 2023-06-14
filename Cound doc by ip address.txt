@@ -26,3 +26,4 @@ GET /<index_name>/_search
     }
   }
 }
+

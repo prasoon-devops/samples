@@ -1,0 +1,227 @@
+Sure! Wazuh is an open-source security monitoring solution that integrates with various SIEM (Security Information and Event Management) platforms. Here are a few examples of SIEM alerts that you can configure in Wazuh:
+
+1. Failed SSH Login:
+   - Description: Detects failed login attempts via SSH.
+   - Alert Criteria: Multiple failed login attempts from the same source IP within a specified time frame.
+
+2. Brute Force Attack:
+   - Description: Detects brute force attacks against SSH, FTP, or other services.
+   - Alert Criteria: Multiple failed login attempts from the same source IP against a specific service within a specified time frame.
+
+3. Web Application Firewall (WAF) Alert:
+   - Description: Detects suspicious activity or attacks against web applications.
+   - Alert Criteria: WAF logs showing potential SQL injection, cross-site scripting (XSS), or other common web application vulnerabilities.
+
+4. Account Lockout:
+   - Description: Detects repeated failed login attempts resulting in account lockouts.
+   - Alert Criteria: Multiple failed login attempts from the same user account within a specified time frame leading to an account lockout.
+
+5. Malware Detection:
+   - Description: Detects the presence of known malware on a system.
+   - Alert Criteria: Detection of files or processes associated with known malware signatures or behaviors.
+
+6. Privilege Escalation Attempt:
+   - Description: Detects attempts to gain elevated privileges on a system.
+   - Alert Criteria: Unusual or unauthorized use of privileged commands or modification of critical system files.
+
+7. Anomalous Network Traffic:
+   - Description: Detects suspicious network activity indicating a potential breach or intrusion.
+   - Alert Criteria: Unusual traffic patterns, large data transfers, or communication with known malicious IP addresses.
+
+8. File Integrity Monitoring (FIM) Alert:
+   - Description: Detects unauthorized modifications to critical system files.
+   - Alert Criteria: Changes made to system files, configuration files, or other important files monitored by the FIM module.
+
+These are just a few examples of the types of SIEM alerts that can be configured in Wazuh. The specific criteria and rules can be customized based on your organization's security requirements and policies.
+
+Certainly! Here are some more examples of SIEM alerts that can be configured in Wazuh:
+
+9. Account Creation:
+   - Description: Detects the creation of new user accounts on a system.
+   - Alert Criteria: New user accounts created with administrative privileges or unusual naming conventions.
+
+10. Excessive Failed Logins:
+    - Description: Detects a high number of failed login attempts across multiple services or systems.
+    - Alert Criteria: A significant increase in failed login attempts from various source IPs within a specific time period.
+
+11. Outbound Port Scan:
+    - Description: Detects scanning activity from internal systems targeting external hosts.
+    - Alert Criteria: Multiple connection attempts from a single source IP to different destination IPs on various ports within a short time span.
+
+12. Unauthorized Service Startup:
+    - Description: Detects the launching of unauthorized services on a system.
+    - Alert Criteria: The initiation of services that are not part of the approved list or are known to be associated with malicious activity.
+
+13. Unusual Process Activity:
+    - Description: Detects suspicious behavior by system processes.
+    - Alert Criteria: Unusual process execution, modification of critical system files, or abnormal CPU/memory consumption.
+
+14. Privileged Account Activity:
+    - Description: Monitors privileged account usage for potentially unauthorized actions.
+    - Alert Criteria: Unusual or unauthorized activities performed by privileged accounts, such as file access, system modifications, or changes to security settings.
+
+15. Network Intrusion Detection:
+    - Description: Detects potential network intrusions or suspicious network activity.
+    - Alert Criteria: Network traffic patterns indicative of network-based attacks, such as port scans, packet fragmentation, or unusual protocol usage.
+
+16. Data Leakage:
+    - Description: Detects the unauthorized exfiltration of sensitive data from the network.
+    - Alert Criteria: Unusual or suspicious data transfers, large file uploads, or network traffic to unauthorized destinations.
+
+17. System Misconfiguration:
+    - Description: Identifies system misconfigurations that could lead to security vulnerabilities.
+    - Alert Criteria: Changes to system settings or configurations that deviate from established security baselines or best practices.
+
+Remember, these examples can be customized and extended based on your specific environment and security requirements.
+
+Certainly! Here are a few more examples of SIEM alerts that can be configured in Wazuh:
+
+18. Account Suspicious Activity:
+    - Description: Detects suspicious activities related to user accounts.
+    - Alert Criteria: Unusual login times, multiple concurrent sessions, or access from unusual locations for a specific user account.
+
+19. Phishing Attack:
+    - Description: Detects potential phishing attempts targeting users within the organization.
+    - Alert Criteria: Detection of suspicious emails, URLs, or attachments with known phishing indicators.
+
+20. Malicious File Execution:
+    - Description: Detects the execution of known malicious files or scripts.
+    - Alert Criteria: Execution of files with known malware signatures or files from suspicious locations (e.g., temporary folders or removable media).
+
+21. Suspicious DNS Activity:
+    - Description: Detects DNS queries or responses indicative of malicious or suspicious activity.
+    - Alert Criteria: Unusual domain name resolutions, DNS tunneling attempts, or communication with known malicious domains.
+
+22. Insider Threat:
+    - Description: Detects activities indicating potential malicious actions by insiders.
+    - Alert Criteria: Unusual file access, data exfiltration attempts, or unauthorized system configuration changes by authorized users.
+
+23. Ransomware Activity:
+    - Description: Detects behaviors associated with ransomware attacks.
+    - Alert Criteria: Unusual file encryption patterns, mass file modifications, or ransom notes appearing on systems.
+
+24. Privileged Account Misuse:
+    - Description: Monitors privileged accounts for inappropriate or unauthorized usage.
+    - Alert Criteria: Unusual administrative activities, unauthorized access attempts, or privilege escalation attempts by privileged accounts.
+
+25. Webshell Detection:
+    - Description: Detects the presence of webshells on web servers.
+    - Alert Criteria: Identification of suspicious files or URLs associated with known webshell signatures or behaviors.
+
+26. Data Anomaly Detection:
+    - Description: Detects unusual data patterns or anomalies within the network.
+    - Alert Criteria: Unusual data transfer volumes, abnormal data access patterns, or data transfers during non-business hours.
+
+27. Critical System Service Disruption:
+    - Description: Detects disruptions or failures in critical system services.
+    - Alert Criteria: Unavailability or abnormal behavior of essential services, such as database servers or authentication services.
+
+These examples should provide you with a good starting point for configuring SIEM alerts in Wazuh. Remember to tailor them to your specific environment and security requirements to ensure effective threat detection and response.
+
+Certainly! Here are a few additional examples of SIEM alerts that can be configured in Wazuh:
+
+28. Suspicious User Agent Activity:
+    - Description: Detects unusual or suspicious user agent strings in web server logs.
+    - Alert Criteria: User agent strings associated with known malicious tools, bots, or uncommon user agents.
+
+29. Database Intrusion Attempt:
+    - Description: Detects attempts to exploit database systems or unauthorized access attempts.
+    - Alert Criteria: Unusual database queries, failed login attempts, or database commands associated with known attack techniques.
+
+30. Network Traffic Anomaly:
+    - Description: Detects unusual or suspicious network traffic patterns.
+    - Alert Criteria: Abnormal spikes in network traffic, unexpected data transfer rates, or communication with blacklisted IP addresses.
+
+31. Unauthorized System Access:
+    - Description: Detects unauthorized access attempts or login activity.
+    - Alert Criteria: Failed login attempts, login attempts from unknown or unauthorized sources, or brute force attack indicators.
+
+32. Privilege Escalation:
+    - Description: Detects attempts to gain elevated privileges on a system.
+    - Alert Criteria: Unusual or unauthorized use of privilege escalation techniques or commands.
+
+33. Web Server Attack:
+    - Description: Detects attacks against web servers or web applications.
+    - Alert Criteria: Web server error codes indicating potential attacks, such as SQL injection, cross-site scripting (XSS), or directory traversal attempts.
+
+34. Exploited Vulnerability:
+    - Description: Detects attempts to exploit known vulnerabilities in software or systems.
+    - Alert Criteria: System or application logs indicating exploitation attempts or activities associated with a known vulnerability.
+
+35. Firewall Rule Violation:
+    - Description: Detects violations of firewall rules or policy violations.
+    - Alert Criteria: Firewall logs indicating blocked or allowed traffic that violates established rules or policies.
+
+36. Data Leakage Prevention (DLP) Violation:
+    - Description: Detects attempts to transfer or access sensitive data in violation of DLP policies.
+    - Alert Criteria: Monitoring of data transfer channels for the presence of sensitive data or unauthorized data transfers.
+
+37. Remote Desktop Protocol (RDP) Brute Force:
+    - Description: Detects brute force attacks against RDP services.
+    - Alert Criteria: Multiple failed login attempts via RDP from the same source IP within a specified time frame.
+
+38. Anomalous System Resource Consumption:
+    - Description: Detects abnormal consumption of system resources.
+    - Alert Criteria: Unusual CPU, memory, or disk usage patterns that may indicate malicious activity or resource exhaustion attacks.
+
+These examples should provide you with a diverse set of SIEM alerts that can be configured in Wazuh. Remember to review and customize the alerts based on your specific environment and security requirements to ensure accurate threat detection.
+
+Certainly! Here are a few additional examples of SIEM alerts that can be configured in Wazuh:
+
+28. Suspicious User Agent Activity:
+    - Description: Detects unusual or suspicious user agent strings in web server logs.
+    - Alert Criteria: User agent strings associated with known malicious tools, bots, or uncommon user agents.
+
+29. Database Intrusion Attempt:
+    - Description: Detects attempts to exploit database systems or unauthorized access attempts.
+    - Alert Criteria: Unusual database queries, failed login attempts, or database commands associated with known attack techniques.
+
+30. Network Traffic Anomaly:
+    - Description: Detects unusual or suspicious network traffic patterns.
+    - Alert Criteria: Abnormal spikes in network traffic, unexpected data transfer rates, or communication with blacklisted IP addresses.
+
+31. Unauthorized System Access:
+    - Description: Detects unauthorized access attempts or login activity.
+    - Alert Criteria: Failed login attempts, login attempts from unknown or unauthorized sources, or brute force attack indicators.
+
+32. Privilege Escalation:
+    - Description: Detects attempts to gain elevated privileges on a system.
+    - Alert Criteria: Unusual or unauthorized use of privilege escalation techniques or commands.
+
+33. Web Server Attack:
+    - Description: Detects attacks against web servers or web applications.
+    - Alert Criteria: Web server error codes indicating potential attacks, such as SQL injection, cross-site scripting (XSS), or directory traversal attempts.
+
+34. Exploited Vulnerability:
+    - Description: Detects attempts to exploit known vulnerabilities in software or systems.
+    - Alert Criteria: System or application logs indicating exploitation attempts or activities associated with a known vulnerability.
+
+35. Firewall Rule Violation:
+    - Description: Detects violations of firewall rules or policy violations.
+    - Alert Criteria: Firewall logs indicating blocked or allowed traffic that violates established rules or policies.
+
+36. Data Leakage Prevention (DLP) Violation:
+    - Description: Detects attempts to transfer or access sensitive data in violation of DLP policies.
+    - Alert Criteria: Monitoring of data transfer channels for the presence of sensitive data or unauthorized data transfers.
+
+37. Remote Desktop Protocol (RDP) Brute Force:
+    - Description: Detects brute force attacks against RDP services.
+    - Alert Criteria: Multiple failed login attempts via RDP from the same source IP within a specified time frame.
+
+38. Anomalous System Resource Consumption:
+    - Description: Detects abnormal consumption of system resources.
+    - Alert Criteria: Unusual CPU, memory, or disk usage patterns that may indicate malicious activity or resource exhaustion attacks.
+
+These examples should provide you with a diverse set of SIEM alerts that can be configured in Wazuh. Remember to review and customize the alerts based on your specific environment and security requirements to ensure accurate threat detection.
+
+Certainly! Here are two more examples of SIEM alerts that can be configured in Wazuh:
+
+49. Suspicious Account Activity during Non-Business Hours:
+    - Description: Detects unusual or suspicious account activities occurring outside of regular business hours.
+    - Alert Criteria: User account logins, file access, or other activities performed during non-business hours that deviate from normal usage patterns.
+
+50. Security Policy Violation:
+    - Description: Detects violations of security policies within the organization.
+    - Alert Criteria: Activities that go against established security policies, such as unauthorized configuration changes, bypassing security controls, or non-compliant system settings.
+
+These additional examples should help you expand the range of SIEM alerts you can configure in Wazuh. Remember to continuously monitor and update your alerts to stay ahead of evolving security threats and to align with your organization's specific security requirements.
