@@ -1,0 +1,36 @@
+PUT _ingest/pipeline/secure-pipeline
+{
+  "description": "Pipeline for processing /var/log/secure file",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{DATA:program}(?:\\[%{POSINT:pid}\\])?: %{GREEDYDATA:message}"
+        ]
+      }
+    },
+    {
+      "date": {
+        "field": "timestamp",
+        "formats": ["MMM  d HH:mm:ss", "MMM dd HH:mm:ss"],
+        "target_field": "@timestamp"
+      }
+    },
+    {
+      "set": {
+        "field": "event.type",
+        "value": "auth"
+      }
+    },
+    {
+      "grok": {
+        "field": "message",
+        "if": "ctx.message.contains('authentication failure')",
+        "patterns": [
+          "authentication failure %{DATA:username}"
+        ]
+      }
+    }
+  ]
+}
