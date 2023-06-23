@@ -1,0 +1,40 @@
+GET your_index/_search
+{
+  "size": 0,
+  "query": {
+    "range": {
+      "status_code": {
+        "gte": 400,
+        "lt": 500
+      }
+    }
+  },
+  "aggs": {
+    "by_ip": {
+      "terms": {
+        "field": "ip_address",
+        "size": 10
+      }
+    }
+  }
+}
+
+Here's a breakdown of the query:
+
+GET your_index/_search: Replace your_index with the actual name of your Elasticsearch index.
+
+"size": 0: Setting "size" to 0 means we don't need to retrieve the actual search results, only the aggregations.
+
+"query" section: This specifies the query to filter the documents based on the range of the "status_code" field. In this case, we are using a range query to match documents with "status_code" values greater than or equal to 400 and less than 500.
+
+"aggs" section: This defines the aggregation to group the matching documents by the "ip_address" field. We are using a terms aggregation to get the top IP addresses with the most occurrences. The "size" parameter specifies the number of IP addresses to include in the aggregation result (in this example, it's set to 10).
+
+By executing this query, you will get the IP addresses grouped by the specified range of error codes (400 to 499). The aggregation result will show the top IP addresses along with their respective document counts.
+
+Remember to replace your_index with the actual name of your Elasticsearch index where the relevant data is stored.
+
+
+
+
+
+
