@@ -81,6 +81,53 @@ GET your_index/_search
   }
 }
 
+GET your_index/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "term": {
+            "field_name": "value"
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET your_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "field1": "value1"
+          }
+        },
+        {
+          "term": {
+            "field2": "value2"
+          }
+        }
+      ],
+      "should": [
+        {
+          "term": {
+            "field3": "value3"
+          }
+        },
+        {
+          "term": {
+            "field4": "value4"
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
 
 
 
