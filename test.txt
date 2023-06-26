@@ -15,3 +15,27 @@ PUT sample_index
     }
   }
 }
+
+GET your_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-5m"
+            }
+          }
+        },
+        {
+          "term": {
+            "http_status_code": {
+              "value": 200
+            }
+          }
+        }
+      ]
+    }
+  }
+}
