@@ -39,3 +39,37 @@ GET your_index/_search
     }
   }
 }
+
+
+
+GET your_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-5m"
+            }
+          }
+        },
+        {
+          "term": {
+            "http_status_code": {
+              "value": 200
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "group_by_ip": {
+      "terms": {
+        "field": "ip_address",
+        "size": 10
+      }
+    }
+  }
+}
