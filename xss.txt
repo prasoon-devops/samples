@@ -1,0 +1,95 @@
+Certainly, here are multiple conditions you can use in Elasticsearch queries to detect potential Cross-Site Scripting (XSS) attacks in your logs using an ELK (Elasticsearch, Logstash, Kibana) stack:
+
+1. **Detecting Common XSS Payloads**:
+   This set of conditions searches for common XSS payloads and patterns in your log data.
+
+   ```json
+   {
+     "query": {
+       "bool": {
+         "should": [
+           { "match": { "message": "<script>" } },
+           { "match_phrase": { "message": "onload=" } },
+           { "match_phrase": { "message": "onmouseover=" } },
+           { "match": { "message": "<img" } }
+         ],
+         "minimum_should_match": 1
+       }
+     }
+   }
+   ```
+
+2. **Detecting Event Handler Usage**:
+   XSS often involves manipulating event handlers. This query focuses on identifying attributes like `on*` in HTML tags.
+
+   ```json
+   {
+     "query": {
+       "bool": {
+         "should": [
+           { "match_phrase": { "message": "onerror=" } },
+           { "match_phrase": { "message": "onload=" } },
+           { "match_phrase": { "message": "onmouseover=" } },
+           { "match_phrase": { "message": "onfocus=" } }
+         ],
+         "minimum_should_match": 1
+       }
+     }
+   }
+   ```
+
+3. **Detecting JavaScript Injection**:
+   XSS attacks often involve injecting malicious JavaScript code. This query searches for common JavaScript keywords.
+
+   ```json
+   {
+     "query": {
+       "bool": {
+         "should": [
+           { "match": { "message": "document.cookie" } },
+           { "match": { "message": "eval(" } },
+           { "match": { "message": "alert(" } }
+         ],
+         "minimum_should_match": 1
+       }
+     }
+   }
+   ```
+
+4. **Detecting HTML Tag Manipulation**:
+   This query identifies instances where HTML tags are being manipulated to execute malicious code.
+
+   ```json
+   {
+     "query": {
+       "bool": {
+         "should": [
+           { "match_phrase": { "message": "<img" } },
+           { "match_phrase": { "message": "<script" } },
+           { "match_phrase": { "message": "<a href=" } }
+         ],
+         "minimum_should_match": 1
+       }
+     }
+   }
+   ```
+
+5. **Detecting URL Parameter Manipulation**:
+   Sometimes XSS attacks involve manipulating URL parameters. This query looks for signs of such manipulation.
+
+   ```json
+   {
+     "query": {
+       "bool": {
+         "should": [
+           { "match_phrase": { "url": "script=" } },
+           { "match_phrase": { "url": "javascript:" } },
+           { "match_phrase": { "url": "img src=" } }
+         ],
+         "minimum_should_match": 1
+       }
+     }
+   }
+   ```
+
+These queries are examples that you can use as a starting point. Be sure to adjust the patterns and conditions based on your specific log data and the types of XSS attacks you want to detect. Regularly review and adapt these queries to stay up-to-date with emerging attack techniques and to minimize false positives. Additionally, implement preventive measures in your application code to mitigate the risk of XSS attacks.
